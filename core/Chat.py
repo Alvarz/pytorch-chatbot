@@ -8,6 +8,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
 THRESHOLD = 0.75
+user_id = 123
 
 
 class Chat:
@@ -17,6 +18,7 @@ class Chat:
         self.all_words = []
         self.tags = []
         self.model = None
+        self.context = {}
 
     ############
     #
@@ -61,6 +63,7 @@ class Chat:
     # Search for a response from model
     #
     def searchForResponse(self, X):
+        answer = None
         output = self.model(X)
         _, predicted = torch.max(output, dim=1)
 
@@ -69,15 +72,30 @@ class Chat:
         probs = torch.softmax(output, dim=1)
         prob = probs[0][predicted.item()]
         if prob.item() > THRESHOLD:
-            for intent in self.intents:
-                if tag == intent["tag"]:
-                    return random.choice(intent['responses'])
-        return None
+            for i in self.intents:
+                if tag == i["tag"]:
+                    # check if this intent is contextual and applies to this user's conversation
+                    if not 'context_filter' in i or \
+                            (user_id in self.context and 'context_filter' in i and i['context_filter'] == self.context[user_id]):
+                        print('tag:', i['tag'])
+                        if 'context_filter' in i:
+                            print('context used on conversation:',
+                                  i['context_filter'])
+                    # a random response from the intent
+                        answer = random.choice(i['responses'])
+
+                    # set context for this intent if necessary
+                    if 'context_set' in i:
+                        print('context to be setted:', i['context_set'])
+                        self.context[user_id] = i['context_set']
+                    # return random.choice(intent['responses'])
+        return answer
 
     ############
     #
     # Chatting on cmd
     #
+
     def chatting(self):
         bot_name = "Sam"
         print("Let's chat! (type 'quit' to exit)")

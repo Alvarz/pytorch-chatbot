@@ -1,4 +1,3 @@
 numpy
-sklearn
 nltk
 python-decouple
