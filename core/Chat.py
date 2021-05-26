@@ -3,6 +3,7 @@ import torch
 from core.model import NeuralNet
 from utils.nltk_utils import bag_of_words, tokenize
 from utils.fileHandler import openAllJsons
+from utils.cmd import bcolors
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -81,14 +82,14 @@ class Chat:
                         if 'context_filter' in i:
                             print('context used on conversation:',
                                   i['context_filter'])
-                    # a random response from the intent
+                        # a random response from the intent
                         answer = random.choice(i['responses'])
 
                     # set context for this intent if necessary
                     if 'context_set' in i:
                         print('context to be setted:', i['context_set'])
                         self.context[user_id] = i['context_set']
-                    # return random.choice(intent['responses'])
+        print(self.context)
         return answer
 
     ############
@@ -98,7 +99,7 @@ class Chat:
 
     def chatting(self):
         bot_name = "Sam"
-        print("Let's chat! (type 'quit' to exit)")
+        print(bcolors.OKBLUE + "Let's chat! (type 'quit' to exit)" + bcolors.ENDC)
         while True:
             # sentence = "do you use credit cards?"
             sentence = input("You: ")
@@ -108,7 +109,8 @@ class Chat:
             X = self.processSentence(sentence)
             response = self.searchForResponse(X)
             if response:
-                print(
-                    f"{bot_name}: {response}")
+                print(bcolors.OKBLUE +
+                      f"{bot_name}: {response}" + bcolors.ENDC)
             else:
-                print(f"{bot_name}: I do not understand...")
+                print(
+                    f"{bcolors.OKBLUE} {bot_name}: I do not understand...{bcolors.ENDC}")
