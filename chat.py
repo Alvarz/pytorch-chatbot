@@ -6,11 +6,15 @@ import torch
 from model import NeuralNet
 from nltk_utils import bag_of_words, tokenize
 
+from utils.fileHandler import openAllJsons
+
+
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-with open('intents.json', 'r') as json_data:
-    intents = json.load(json_data)
+# with open('intents.json', 'r') as json_data:
+#     intents = json.load(json_data)
 
+intents = openAllJsons(lang='en')
 FILE = "data.pth"
 data = torch.load(FILE)
 
@@ -46,7 +50,7 @@ while True:
     probs = torch.softmax(output, dim=1)
     prob = probs[0][predicted.item()]
     if prob.item() > 0.75:
-        for intent in intents['intents']:
+        for intent in intents:
             if tag == intent["tag"]:
                 print(f"{bot_name}: {random.choice(intent['responses'])}")
     else:

@@ -1,0 +1,80 @@
+{
+  "intents": [
+    {
+      "tag": "greetings",
+      "patterns": [
+        "Hola",
+        "hello",
+        "hi",
+        "how are you?",
+        "Is anyone there?",
+        "good day",
+        "good morning"
+      ],
+      "responses": [
+        "hello, I am fine and you?",
+        "it is good to see you again",
+        "Hi, how can I help you",
+        "good, you?"
+      ]
+    },
+    {
+      "tag": "greetings_extended",
+      "patterns": [
+        "I am good too.",
+        "very good too"
+      ],
+      "responses": [
+        "I am glad to hear that.",
+        "cool, how can i help you",
+        "I am glad"
+      ]
+    },
+    {
+      "tag": "idle",
+      "patterns": [
+        "nice.",
+        "ok",
+        "good",
+        "awesome"
+      ],
+      "responses": [
+        "How can I help you.",
+        "What can i do for you?",
+        "Do you need something?"
+      ],
+      "context_set": ""
+    },
+    {
+      "tag": "farewell",
+      "patterns": [
+        "bye",
+        "see you later",
+        "see ya",
+        "farewell",
+        "good bye"
+      ],
+      "responses": [
+        "good bye, hope to see you soon",
+        "have a great day",
+        "bye! comeback soon."
+      ],
+      "context_set": ""
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "thanks",
+        "I appreciate it",
+        "that comes in handy",
+        "thank you"
+      ],
+      "responses": [
+        "Glad to be helpful!",
+        "Anytime!",
+        "My pleasure",
+        "No worries"
+      ]
+    }
+  ]
+}

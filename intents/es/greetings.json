@@ -1,0 +1,31 @@
+{"intents": [
+        {
+         "tag": "greetings",
+         "patterns": ["Hola", "hello", "Como estas?", "hay alguien alli?", "Buen dia", "Buenos dias, como estas"],
+         "responses": ["Hola, espero estes muy bien", "Que bueno verte otra vez", "Hola, como puedo ayudarte?", "Estoy bien, ¿y tu?"]
+        },
+        {
+         "tag": "greetings_extended",
+         "patterns": ["Yo también estoy bien.", "muy bien tambien"],
+         "responses": ["Que bueno.", "me alegra mucho", "genial, te puedo ayudar en algo", "me da gusto"]
+        },
+        {
+         "tag": "idle",
+         "patterns": ["genial.", "ok", "bueno", "perfecto"],
+         "responses": ["En que puedo ayudarte.", "Puedo hacer algo por ti?", "Necesitas algo?", "como puedo ayudarte?"],
+         "context_set": ""
+        },
+        {
+          "tag": "farewell",
+         "patterns": ["adios", "chao","te veo luego", "has luego"],
+         "responses": ["Hasta luego, espero estes muy bien", "que tengas un buen dia", "Adios! regresa pronto."],
+         "context_set": ""
+        },
+        {
+          "tag": "thanks",
+         "patterns": ["gracias", "te agradezco", "eso es muy util", "gracias de todas formas"],
+         "responses": ["Feliz de ayudar!", "Cuando quieras!", "Un placer", "No hay problema"]
+        }
+
+  ]
+}

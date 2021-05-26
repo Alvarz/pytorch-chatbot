@@ -1,0 +1,66 @@
+{
+  "intents": [
+    {
+      "tag": "todayeventstoday",
+      "patterns": [
+        "do I have some events?",
+        "which apointments I have  ?",
+        "do i have some plans?",
+        "which events I have today?"
+      ],
+      "responses": [
+        "you have an event called {{name}} at {{start}} and finish at {{end}}",
+        "you have an apointment at {{start}} it end at {{end}} and it is called {{name}}",
+        "the event will start at {{start}}  hours and end at  {{end}}, is called {{name}}"
+      ],
+      "action": "todayevents",
+      "context_filter": "today"
+    },
+    {
+      "tag": "todayevents",
+      "patterns": [
+        "do I have events today ?",
+        "what apointments do I have this day ?",
+        "what are my plans today?"
+      ],
+      "responses": [
+        "you have an event called {{name}} at {{start}} and finish at {{end}}",
+        "you have an apointment at {{start}} it end at {{end}} and it is called {{name}}",
+        "the event will start at {{start}}  hours and end at  {{end}}, is called {{name}}"
+      ],
+      "action": "todayevents",
+      "context_set": "eventstoday"
+    },
+    {
+      "tag": "tomorrowevents",
+      "patterns": [
+        "and tomorrow?",
+        "tomorrow?"
+      ],
+      "responses": [
+        "tomorrow you have an event called {{name}} at {{start}} and finish at {{end}}",
+        "tomorrow you have an apointment at {{start}} it end at {{end}} and it is called {{name}}",
+        "the event will start at {{start}}  hours tomorrow and end at  {{end}}, is called {{name}}"
+      ],
+      "action": "tomorrowevents",
+      "context_set": "",
+      "context_filter": "eventstoday"
+    },
+    {
+      "tag": "tomorroweventstomorrow",
+      "patterns": [
+        "what events do I have tomorrow?",
+        "what I have for tomorrow?",
+        "which appointments I have for tomorrow?"
+      ],
+      "responses": [
+        "tomorrow you have an event called {{name}} at {{start}} and finish at {{end}}",
+        "tomorrow you have an apointment at {{start}} it end at {{end}} and it is called {{name}}",
+        "the event will start at {{start}}  hours tomorrow and end at  {{end}}, is called {{name}}"
+      ],
+      "action": "tomorrowevents",
+      "context_set": "",
+      "context_filter": ""
+    }
+  ]
+}
