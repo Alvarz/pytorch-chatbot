@@ -1,0 +1,16 @@
+version: "3.6"
+
+services:
+  chatbot:
+    build: .
+    command: python chat.py
+    volumes:
+      - .:/app
+
+  train:
+    build: .
+    command: python train.py
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app
