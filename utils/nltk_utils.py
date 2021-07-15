@@ -1,8 +1,15 @@
 import numpy as np
 import nltk
 # nltk.download('punkt')
+
+# lancaster to gain speed but is not as good as the others
+#from nltk.stem.lancaster import LancasterStemmer
+#stemmerEn = LancasterStemmer("")
 from nltk.stem.porter import PorterStemmer
-stemmer = PorterStemmer()
+from nltk.stem.snowball import SnowballStemmer
+stemmerEng = PorterStemmer()
+stemmerSpa = SnowballStemmer("spanish")
+
 
 def tokenize(sentence):
     """
@@ -12,7 +19,7 @@ def tokenize(sentence):
     return nltk.word_tokenize(sentence)
 
 
-def stem(word):
+def stem(word, lang='en'):
     """
     stemming = find the root form of the word
     examples:
@@ -20,7 +27,13 @@ def stem(word):
     words = [stem(w) for w in words]
     -> ["organ", "organ", "organ"]
     """
-    return stemmer.stem(word.lower())
+    stemed = None
+    if lang == 'en':
+        stemed = stemmerEng.stem(word.lower())
+    elif lang == 'es':
+        stemed = stemmerSpa.stem(word.lower())
+
+    return stemed
 
 
 def bag_of_words(tokenized_sentence, words):
@@ -37,7 +50,7 @@ def bag_of_words(tokenized_sentence, words):
     # initialize bag with 0 for each word
     bag = np.zeros(len(words), dtype=np.float32)
     for idx, w in enumerate(words):
-        if w in sentence_words: 
+        if w in sentence_words:
             bag[idx] = 1
 
     return bag

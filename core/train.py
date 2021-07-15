@@ -63,7 +63,7 @@ class Train:
 
         # stem and lower each word
         ignore_words = ['?', '.', '!']
-        self.all_words = [stem(w)
+        self.all_words = [stem(w, self.lang)
                           for w in self.all_words if w not in ignore_words]
         # remove duplicates and sort
         self.all_words = sorted(set(self.all_words))
@@ -104,7 +104,7 @@ class Train:
         input_size = len(self.X_train[0])
         hidden_size = 8
         output_size = len(self.tags)
-        print(input_size, output_size)
+        print("input size: ", input_size, " - ", "output size: ", output_size)
         dataset = ChatDataset(self.X_train, self.y_train)
         train_loader = DataLoader(dataset=dataset,
                                   batch_size=batch_size,

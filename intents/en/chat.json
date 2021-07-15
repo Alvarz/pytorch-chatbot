@@ -13,7 +13,8 @@
         "Because I do not have eyes"
       ],
       "context_filter": "cannotread",
-      "context_set": "programmed"
+      "context_set": "programmed",
+      "context_remove": "cannotread"
     },
     {
       "tag": "mybook",

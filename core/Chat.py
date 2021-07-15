@@ -1,5 +1,6 @@
 import random
 import torch
+from actions.Actions import Actions
 from core.model import NeuralNet
 from utils.nltk_utils import bag_of_words, tokenize
 from utils.fileHandler import openAllJsons
@@ -20,6 +21,7 @@ class Chat:
         self.tags = []
         self.model = None
         self.context = {}
+        self.actions = Actions()
 
     ############
     #
@@ -59,10 +61,22 @@ class Chat:
         X = torch.from_numpy(X).to(device)
         return X
 
-    ############
-    #
-    # Search for a response from model
-    #
+    def setContext(self, user_id, context_to_set):
+        if user_id not in self.context:
+            self.context[user_id] = []
+        print('context to be setted:', context_to_set)
+        self.context[user_id].append(context_to_set)
+
+    def removeContext(self, user_id, context_to_set):
+        if user_id in self.context and context_to_set in self.context[user_id]:
+            print('context to be removed:', context_to_set)
+            self.context[user_id].remove(context_to_set)
+
+        ############
+        #
+        # Search for a response from model
+        #
+
     def searchForResponse(self, X):
         answer = None
         output = self.model(X)
@@ -75,9 +89,15 @@ class Chat:
         if prob.item() > THRESHOLD:
             for i in self.intents:
                 if tag == i["tag"]:
+
+                    # check if has action and perform the action
+                    if 'action' in i:
+                        #     action = i['action']
+                        return self.triggerAction(i, X)
+
                     # check if this intent is contextual and applies to this user's conversation
                     if not 'context_filter' in i or \
-                            (user_id in self.context and 'context_filter' in i and i['context_filter'] == self.context[user_id]):
+                            (user_id in self.context and 'context_filter' in i and i['context_filter'] in self.context[user_id]):
                         print('tag:', i['tag'])
                         if 'context_filter' in i:
                             print('context used on conversation:',
@@ -87,10 +107,20 @@ class Chat:
 
                     # set context for this intent if necessary
                     if 'context_set' in i:
-                        print('context to be setted:', i['context_set'])
-                        self.context[user_id] = i['context_set']
+                        self.setContext(user_id, i['context_set'])
+                    # remove context for this intent if necessary
+                    if 'context_remove' in i:
+                        self.removeContext(user_id, i['context_remove'])
         print(self.context)
         return answer
+
+    def triggerAction(self, intent, sentence):
+        print('called to proccess action')
+        action = intent['action']
+        response = random.choice(intent['responses'])
+        # if show_details:
+        #    print('action:', action)
+        return self.actions.dispatchAction(action, response, sentence, None, intent['responses'])
 
     ############
     #
