@@ -25,7 +25,7 @@ class ChatDataset(Dataset):
 
 class Train:
 
-    def __init__(self, lang='en'):
+    def __init__(self, lang='es'):
         self.lang = lang
         self.all_words = []
         self.tags = []
@@ -38,7 +38,7 @@ class Train:
     # main call to build the model
     #
     def build(self):
-        intents = openAllJsons(lang='en')
+        intents = openAllJsons(self.lang)
         self.processIntents(intents)
         self.createTrainingData()
         model = self.startTraining()
@@ -84,7 +84,7 @@ class Train:
         # create training data
         for (pattern_sentence, tag) in self.xy:
             # X: bag of words for each pattern_sentence
-            bag = bag_of_words(pattern_sentence, self.all_words)
+            bag = bag_of_words(pattern_sentence, self.all_words, self.lang)
             X_train.append(bag)
             # y: PyTorch CrossEntropyLoss needs only class labels, not one-hot
             label = self.tags.index(tag)

@@ -1,5 +1,5 @@
 from core.train import Train
 
-lang = 'en'
+lang = 'es'
 train = Train(lang)
 train.build()

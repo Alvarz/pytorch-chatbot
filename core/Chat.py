@@ -14,7 +14,7 @@ user_id = 123
 
 
 class Chat:
-    def __init__(self, lang='en'):
+    def __init__(self, lang='es'):
         self.lang = lang
         self.intents = None
         self.all_words = []
@@ -56,7 +56,7 @@ class Chat:
     #
     def processSentence(self, sentence):
         sentence = tokenize(sentence)
-        X = bag_of_words(sentence, self.all_words)
+        X = bag_of_words(sentence, self.all_words, self.lang)
         X = X.reshape(1, X.shape[0])
         X = torch.from_numpy(X).to(device)
         return X
@@ -128,7 +128,7 @@ class Chat:
     #
 
     def chatting(self):
-        bot_name = "Sam"
+        bot_name = "Bebop"
         print(bcolors.OKBLUE + "Let's chat! (type 'quit' to exit)" + bcolors.ENDC)
         while True:
             # sentence = "do you use credit cards?"
