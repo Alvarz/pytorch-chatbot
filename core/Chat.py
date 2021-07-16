@@ -32,6 +32,17 @@ class Chat:
         self.rebuildModel()
         self.chatting()
 
+    def cmdChat(self, sentence):
+        self.intents = openAllJsons(self.lang)
+        self.rebuildModel()
+
+        X = self.processSentence(sentence)
+        response = self.searchForResponse(X)
+        if response:
+            return response
+        else:
+            return "I do not understand..."
+
     ############
     #
     # rebuild the models from file by language

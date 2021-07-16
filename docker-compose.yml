@@ -14,3 +14,9 @@ services:
     tty: true
     volumes:
       - .:/app
+
+  cmdchatbot:
+    build: .
+    command: python index.py
+    volumes:
+      - .:/app
