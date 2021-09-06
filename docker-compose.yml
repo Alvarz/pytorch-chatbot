@@ -17,6 +17,6 @@ services:
 
   cmdchatbot:
     build: .
-    command: python index.py
+    command: python main.py
     volumes:
       - .:/app
