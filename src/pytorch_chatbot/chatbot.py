@@ -1,9 +1,9 @@
 import random
 import torch
-from core.model import NeuralNet
-from utils.nltk_utils import bag_of_words, tokenize
-from utils.fileHandler import openAllJsons
-from utils.cmd import bcolors
+from pytorch_chatbot.model import NeuralNet
+from pytorch_chatbot.utils.nltk_utils import bag_of_words, tokenize
+from pytorch_chatbot.utils.fileHandler import openAllJsons
+from pytorch_chatbot.utils.cmd import bcolors
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -13,13 +13,14 @@ user_id = 123
 
 
 class Chat:
-    def __init__(self, lang='es', path='intents/es/'):
+    def __init__(self, lang='es', intentsPath='intents/es/', modelPath='trainedModels/data_es_trained.pth'):
         self.lang = lang
         self.intents = None
         self.all_words = []
         self.tags = []
         self.model = None
-        self.path = path
+        self.intentsPath = intentsPath
+        self.modelPath = modelPath
         self.context = {}
 
     ############
@@ -27,18 +28,18 @@ class Chat:
     # start the chatting process
     #
     def startChat(self):
-        self.intents = openAllJsons(self.lang, path=self.path)
-        self.rebuildModel()
+        self.setup()
         self.chatting()
 
-    def cmdChat(self, sentence):
-        self.intents = openAllJsons(self.lang)
+    def setup(self):
+        self.intents = openAllJsons(self.lang, path=self.intentsPath)
         self.rebuildModel()
 
+    def simpleChat(self, sentence):
         X = self.processSentence(sentence)
-        response = self.searchForResponse(X)
+        response, action = self.searchForResponse(X)
         if response:
-            return response
+            return response, action
         else:
             return "I do not understand..."
 
@@ -47,7 +48,8 @@ class Chat:
     # rebuild the models from file by language
     #
     def rebuildModel(self):
-        FILE = "trainedModels/data_"+self.lang+"_trained.pth"
+        # FILE = "trainedModels/data_"+self.lang+"_trained.pth"
+        FILE = self.modelPath
         data = torch.load(FILE)
         input_size = data["input_size"]
         hidden_size = data["hidden_size"]
@@ -89,6 +91,7 @@ class Chat:
 
     def searchForResponse(self, X):
         answer = None
+        action = None
         output = self.model(X)
         _, predicted = torch.max(output, dim=1)
 

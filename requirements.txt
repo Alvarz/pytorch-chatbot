@@ -1,3 +1,6 @@
 numpy
 nltk
 python-decouple
+torch
+torchvision
+torchaudio

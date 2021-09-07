@@ -2,8 +2,9 @@ import os
 import json
 #import matplotlib.pyplot as plt
 
-from decouple import config
-ENVIRONMENT = config('ENVIRONMENT')
+# from decouple import config
+# ENVIRONMENT = config('ENVIRONMENT')
+ENVIRONMENT = 'local'
 print(ENVIRONMENT)
 
 

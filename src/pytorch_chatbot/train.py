@@ -2,9 +2,9 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
-from utils.nltk_utils import bag_of_words, tokenize, stem
-from core.model import NeuralNet
-from utils.fileHandler import openAllJsons
+from pytorch_chatbot.utils.nltk_utils import bag_of_words, tokenize, stem
+from pytorch_chatbot.model import NeuralNet
+from pytorch_chatbot.utils.fileHandler import openAllJsons
 
 
 class ChatDataset(Dataset):
@@ -25,20 +25,21 @@ class ChatDataset(Dataset):
 
 class Train:
 
-    def __init__(self, lang='es'):
+    def __init__(self, lang='es', intentsPath='intents/es/'):
         self.lang = lang
         self.all_words = []
         self.tags = []
         self.X_train = []
         self.y_train = []
         self.xy = []
+        self.intentsPath = intentsPath
 
     ############
     #
     # main call to build the model
     #
     def build(self):
-        intents = openAllJsons(self.lang)
+        intents = openAllJsons(self.lang, path=self.intentsPath)
         self.processIntents(intents)
         self.createTrainingData()
         model = self.startTraining()

@@ -8,5 +8,6 @@ This is the top-level namespace of the pytorch_chatbot package.
 ##############################################################################
 # Imports
 ##############################################################################
-
-from . import core
+from . import chatbot
+from . import model
+from . import train

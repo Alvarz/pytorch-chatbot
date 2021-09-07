@@ -2,8 +2,9 @@
 import getopt
 import sys
 import os
-from core.Chat import Chat
-from utils.cmd import bcolors
+# from ..core.Chat import Chat
+from pytorch_chatbot.chatbot import Chat
+from pytorch_chatbot.utils.cmd import bcolors
 
 # os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
