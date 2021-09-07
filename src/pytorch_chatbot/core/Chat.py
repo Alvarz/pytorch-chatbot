@@ -1,6 +1,5 @@
 import random
 import torch
-from actions.Actions import Actions
 from core.model import NeuralNet
 from utils.nltk_utils import bag_of_words, tokenize
 from utils.fileHandler import openAllJsons
@@ -14,21 +13,21 @@ user_id = 123
 
 
 class Chat:
-    def __init__(self, lang='es'):
+    def __init__(self, lang='es', path='intents/es/'):
         self.lang = lang
         self.intents = None
         self.all_words = []
         self.tags = []
         self.model = None
+        self.path = path
         self.context = {}
-        self.actions = Actions()
 
     ############
     #
     # start the chatting process
     #
     def startChat(self):
-        self.intents = openAllJsons(self.lang)
+        self.intents = openAllJsons(self.lang, path=self.path)
         self.rebuildModel()
         self.chatting()
 
@@ -103,8 +102,7 @@ class Chat:
 
                     # check if has action and perform the action
                     if 'action' in i:
-                        #     action = i['action']
-                        return self.triggerAction(i, X)
+                        action = i['action']
 
                     # check if this intent is contextual and applies to this user's conversation
                     if not 'context_filter' in i or \
@@ -123,15 +121,7 @@ class Chat:
                     if 'context_remove' in i:
                         self.removeContext(user_id, i['context_remove'])
         print(self.context)
-        return answer
-
-    def triggerAction(self, intent, sentence):
-        print('called to proccess action')
-        action = intent['action']
-        response = random.choice(intent['responses'])
-        # if show_details:
-        #    print('action:', action)
-        return self.actions.dispatchAction(action, response, sentence, None, intent['responses'])
+        return answer, action
 
     ############
     #

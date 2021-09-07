@@ -44,7 +44,7 @@ def main(argv):
     print('Input language is: ', lang)
     print('Input question is: ', question)
     print('Input user_id is: ', user_id)
-    my_chat = Chat(lang)
+    my_chat = Chat(lang, path='intents/' + lang + '/')
     answer = my_chat.cmdChat(question)
     print(bcolors.OKBLUE +
           f"{answer}" + bcolors.ENDC)

@@ -6,13 +6,15 @@ from decouple import config
 ENVIRONMENT = config('ENVIRONMENT')
 print(ENVIRONMENT)
 
-def openAllJsons(lang='es'):
+
+def openAllJsons(lang='es', path=None):
     if ENVIRONMENT == 'local':
-        return  openFromLocal(lang)
+        return openFromLocal(lang=lang, path=path)
     return None
 
-def openFromLocal(lang='es'):
-    path = 'intents/' + lang + '/'
+
+def openFromLocal(lang='es', path=None):
+
     intents = None
     json_files = [pos_json for pos_json in os.listdir(
         path) if pos_json.endswith('.json')]
@@ -27,6 +29,7 @@ def openFromLocal(lang='es'):
                     intents.append(i)
     # print intents
     return intents
+
 
 """ def plot_history(history):
     print("Ploting history")
