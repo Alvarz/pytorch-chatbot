@@ -144,3 +144,5 @@ pyvenv.*
 include/
 
 bin/
+
+.DS_Store

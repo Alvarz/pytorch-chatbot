@@ -9,11 +9,11 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
 THRESHOLD = 0.75
-user_id = 123
+# user_id = 123
 
 
 class Chat:
-    def __init__(self, lang='es', intentsPath='intents/es/', modelPath='trainedModels/data_es_trained.pth'):
+    def __init__(self, lang='es', intentsPath='intents/es/', modelPath='trainedModels/data_es_trained.pth', context={}):
         self.lang = lang
         self.intents = None
         self.all_words = []
@@ -21,27 +21,34 @@ class Chat:
         self.model = None
         self.intentsPath = intentsPath
         self.modelPath = modelPath
-        self.context = {}
+        self.context = context
 
     ############
     #
     # start the chatting process
     #
-    def startChat(self):
+    def startChat(self, user_id=123):
         self.setup()
-        self.chatting()
+        self.chatting(user_id)
 
     def setup(self):
         self.intents = openAllJsons(self.lang, path=self.intentsPath)
         self.rebuildModel()
 
-    def simpleChat(self, sentence):
+    def simpleChat(self, sentence, user_id=123):
         X = self.processSentence(sentence)
-        response, action = self.searchForResponse(X)
+        response, action = self.searchForResponse(X, user_id)
         if response:
             return response, action
         else:
-            return "I do not understand..."
+            return "I do not understand...", None
+
+    ############
+    #
+    # return the chat context
+    #
+    def getContext(self):
+        return self.context
 
     ############
     #
@@ -89,7 +96,7 @@ class Chat:
         # Search for a response from model
         #
 
-    def searchForResponse(self, X):
+    def searchForResponse(self, X, user_id):
         answer = None
         action = None
         output = self.model(X)
@@ -131,7 +138,7 @@ class Chat:
     # Chatting on cmd
     #
 
-    def chatting(self):
+    def chatting(self, user_id):
         bot_name = "Bebop"
         print(bcolors.OKBLUE + "Let's chat! (type 'quit' to exit)" + bcolors.ENDC)
         while True:
@@ -141,7 +148,7 @@ class Chat:
                 break
 
             X = self.processSentence(sentence)
-            response = self.searchForResponse(X)
+            response = self.searchForResponse(X, user_id)
             if response:
                 print(bcolors.OKBLUE +
                       f"{bot_name}: {response}" + bcolors.ENDC)

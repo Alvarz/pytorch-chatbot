@@ -12,20 +12,17 @@
         {
          "tag": "idle",
          "patterns": ["genial.", "ok", "bueno", "perfecto"],
-         "responses": ["En que puedo ayudarte.", "Puedo hacer algo por ti?", "Necesitas algo?", "como puedo ayudarte?"],
-         "context_set": ""
+         "responses": ["En que puedo ayudarte.", "Puedo hacer algo por ti?", "Necesitas algo?", "como puedo ayudarte?"]
         },
         {
           "tag": "farewell",
          "patterns": ["adios", "chao","te veo luego", "has luego"],
-         "responses": ["Hasta luego, espero estes muy bien", "que tengas un buen dia", "Adios! regresa pronto."],
-         "context_set": ""
+         "responses": ["Hasta luego, espero estes muy bien", "que tengas un buen dia", "Adios! regresa pronto."]
         },
         {
           "tag": "thanks",
          "patterns": ["gracias", "te agradezco", "eso es muy util", "gracias de todas formas"],
          "responses": ["Feliz de ayudar!", "Cuando quieras!", "Un placer", "No hay problema"]
         }
-
   ]
 }

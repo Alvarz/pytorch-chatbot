@@ -30,7 +30,6 @@
             "Tiene manana un evento que comezara a las {{start}}  horas y termina a las {{end}}, se llama {{name}}"
           ],
           "action": "tomorrowevents",
-         "context_set": "",
          "context_filter": "eventstoday"
         },
         {
@@ -41,9 +40,7 @@
             "Tiene una cita manana a las {{start}} que termina a las {{end}} llamado {{name}}",
             "Tiene manana un evento que comezara a las {{start}}  horas y termina a las {{end}}, se llama {{name}}"
           ],
-          "action": "tomorrowevents",
-         "context_set": "",
-         "context_filter": ""
+          "action": "tomorrowevents"
         }
    ]
 }

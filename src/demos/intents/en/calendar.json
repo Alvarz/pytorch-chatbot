@@ -43,7 +43,6 @@
         "the event will start at {{start}}  hours tomorrow and end at  {{end}}, is called {{name}}"
       ],
       "action": "tomorrowevents",
-      "context_set": "",
       "context_filter": "eventstoday"
     },
     {
@@ -58,9 +57,7 @@
         "tomorrow you have an apointment at {{start}} it end at {{end}} and it is called {{name}}",
         "the event will start at {{start}}  hours tomorrow and end at  {{end}}, is called {{name}}"
       ],
-      "action": "tomorrowevents",
-      "context_set": "",
-      "context_filter": ""
+      "action": "tomorrowevents"
     }
   ]
 }
