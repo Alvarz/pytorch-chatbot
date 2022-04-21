@@ -1,22 +1,36 @@
-{"intents": [
-        {
-          "tag": "time",
-          "patterns": ["sabes cual hora es?", "puedes decirme la hora?", "en que hora estamos?", "sabras que horas son?"],
-          "responses": ["son las {{time}}", "claro, estamos a las {{time}}"],
-          "action": "gettime"
-        },
-        {
-          "tag": "date",
-          "patterns": ["que fecha es?", "puedes decirme la fecha de hoy?", "en que fecha estamos?"],
-          "responses": ["hoy estamos a {{date}}", "Si, si hoy es {{date}}"],
-          "action": "getdate"
-        },
-        {
-          "tag": "day",
-          "patterns": ["sabes que dia es hoy?", "puedes decirme que dia es?", "en que dia estamos?"],
-          "responses": ["hoy es  el dia {{day}}", "claro, hoy es {{day}}"],
-          "action": "getday",
-         "context_set": "today"
-        }
-   ]
+{
+  "intents": [
+    {
+      "tag": "time",
+      "patterns": [
+        "sabes cual hora es?",
+        "puedes decirme la hora?",
+        "en que hora estamos?",
+        "sabras que horas son?"
+      ],
+      "responses": ["son las {{time}}", "claro, estamos a las {{time}}"],
+      "skill": "gettime"
+    },
+    {
+      "tag": "date",
+      "patterns": [
+        "que fecha es?",
+        "puedes decirme la fecha de hoy?",
+        "en que fecha estamos?"
+      ],
+      "responses": ["hoy estamos a {{date}}", "Si, si hoy es {{date}}"],
+      "skill": "getdate"
+    },
+    {
+      "tag": "day",
+      "patterns": [
+        "sabes que dia es hoy?",
+        "puedes decirme que dia es?",
+        "en que dia estamos?"
+      ],
+      "responses": ["hoy es  el dia {{day}}", "claro, hoy es {{day}}"],
+      "skill": "getday",
+      "context_set": "today"
+    }
+  ]
 }

@@ -6,11 +6,8 @@
         "what time is it?",
         "do you mind telling me the what time is it?"
       ],
-      "responses": [
-        "it is {{time}}",
-        "sure, it is {{time}}"
-      ],
-      "action": "gettime"
+      "responses": ["it is {{time}}", "sure, it is {{time}}"],
+      "skill": "gettime"
     },
     {
       "tag": "date",
@@ -18,11 +15,8 @@
         "what date is today?",
         "do you mind telling me the date of today?"
       ],
-      "responses": [
-        "today is {{date}}",
-        "yes, today is {{date}}"
-      ],
-      "action": "getdate"
+      "responses": ["today is {{date}}", "yes, today is {{date}}"],
+      "skill": "getdate"
     },
     {
       "tag": "day",
@@ -30,11 +24,8 @@
         "what day is today?",
         "do you mind telling me the day of today?"
       ],
-      "responses": [
-        "today is {{date}}",
-        "yes, today is {{date}}"
-      ],
-      "action": "getday",
+      "responses": ["today is {{date}}", "yes, today is {{date}}"],
+      "skill": "getday",
       "context_set": "today"
     }
   ]

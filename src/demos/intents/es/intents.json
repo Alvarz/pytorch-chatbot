@@ -1,27 +1,37 @@
-{"intents": [
-        {
-          "tag": "rental",
-         "patterns": ["Podemos rentar un auto?", "Quiero alquilar un auto", "como funcina esto?" ],
-         "responses": ["quieres rentar esta hoy o luego?"],
-         "context_set": "rentalday"
-        },
-        {
-          "tag": "today",
-         "patterns": ["hoy", "ahora mismo"],
-         "responses": ["Para alquilar hoy llame a 1-800-MYMOPED", "Alquileres el mismo dia por favor llame a 1-800-MYMOPED"],
-         "context_filter": "rentalday"
-        },
-        {
-          "tag": "later",
-         "patterns": ["luego", "otro dia", "despues"],
-         "responses": ["Cuando estes listo para alquilar puedes llamar a 1-800-MYMOPED"],
-         "context_filter": "rentalday"
-        },
-        {
-          "tag": "search",
-          "patterns": ["sabes que es ?", "puedes buscar que es ?", "que es"],
-          "responses": ["la respuesta es {{resp}}"],
-          "action": "search"
-        }
-   ]
+{
+  "intents": [
+    {
+      "tag": "rental",
+      "patterns": [
+        "Podemos rentar un auto?",
+        "Quiero alquilar un auto",
+        "como funcina esto?"
+      ],
+      "responses": ["quieres rentar esta hoy o luego?"],
+      "context_set": "rentalday"
+    },
+    {
+      "tag": "today",
+      "patterns": ["hoy", "ahora mismo"],
+      "responses": [
+        "Para alquilar hoy llame a 1-800-MYMOPED",
+        "Alquileres el mismo dia por favor llame a 1-800-MYMOPED"
+      ],
+      "context_filter": "rentalday"
+    },
+    {
+      "tag": "later",
+      "patterns": ["luego", "otro dia", "despues"],
+      "responses": [
+        "Cuando estes listo para alquilar puedes llamar a 1-800-MYMOPED"
+      ],
+      "context_filter": "rentalday"
+    },
+    {
+      "tag": "search",
+      "patterns": ["sabes que es ?", "puedes buscar que es ?", "que es"],
+      "responses": ["la respuesta es {{resp}}"],
+      "skill": "search"
+    }
+  ]
 }

@@ -1,46 +1,62 @@
-{"intents": [
-        {
-          "tag": "todayeventstoday",
-          "patterns": ["que eventos tengo?", "cuales son las citas  ?", "que eventos tengo planificados?", "cuales son los eventos para el dia?", "cuales eventos tengo hoy"],
-          "responses": [
-            "Tiene un evento llamado {{name}} a las {{start}} que termina a las {{end}}",
-            "Tiene una cita a las {{start}} que termina a las {{end}} llamado {{name}}",
-            "Tiene una evento que comezara a las {{start}}  horas y termina a las {{end}}, se llama {{name}}"
-          ],
-          "action": "todayevents",
-         "context_filter": "today"
-        },
-        {
-          "tag": "todayevents",
-          "patterns": ["que eventos tengo para hoy ?", "cuales son las citas de este dia ?", "que eventos tengo planificados para hoy?", "cuales son los eventos para el dia de hoy?"],
-          "responses": [
-            "Tiene un evento llamado {{name}} a las {{start}} que termina a las {{end}}",
-            "Tiene una cita a las {{start}} que termina a las {{end}} llamado {{name}}",
-            "Tiene un evento que comezara a las {{start}}  horas y termina a las {{end}}, se llama {{name}}"
-          ],
-          "action": "todayevents",
-         "context_set": "eventstoday"
-        },
-        {
-          "tag": "tomorrowevents",
-          "patterns": ["y manana?", "para manana?"],
-          "responses": [
-            "Manana tiene un evento llamado {{name}} a las {{start}} que termina a las {{end}}",
-            "Tiene una cita manana a las {{start}} que termina a las {{end}} llamado {{name}}",
-            "Tiene manana un evento que comezara a las {{start}}  horas y termina a las {{end}}, se llama {{name}}"
-          ],
-          "action": "tomorrowevents",
-         "context_filter": "eventstoday"
-        },
-        {
-          "tag": "tomorroweventstomorrow",
-          "patterns": ["que eventos tengo para manana?", "para manana que tengo?", "que debo hacer maniana?"],
-          "responses": [
-            "Manana tiene un evento llamado {{name}} a las {{start}} que termina a las {{end}}",
-            "Tiene una cita manana a las {{start}} que termina a las {{end}} llamado {{name}}",
-            "Tiene manana un evento que comezara a las {{start}}  horas y termina a las {{end}}, se llama {{name}}"
-          ],
-          "action": "tomorrowevents"
-        }
-   ]
+{
+  "intents": [
+    {
+      "tag": "todayeventstoday",
+      "patterns": [
+        "que eventos tengo?",
+        "cuales son las citas  ?",
+        "que eventos tengo planificados?",
+        "cuales son los eventos para el dia?",
+        "cuales eventos tengo hoy"
+      ],
+      "responses": [
+        "Tiene un evento llamado {{name}} a las {{start}} que termina a las {{end}}",
+        "Tiene una cita a las {{start}} que termina a las {{end}} llamado {{name}}",
+        "Tiene una evento que comezara a las {{start}}  horas y termina a las {{end}}, se llama {{name}}"
+      ],
+      "skill": "todayevents",
+      "context_filter": "today"
+    },
+    {
+      "tag": "todayevents",
+      "patterns": [
+        "que eventos tengo para hoy ?",
+        "cuales son las citas de este dia ?",
+        "que eventos tengo planificados para hoy?",
+        "cuales son los eventos para el dia de hoy?"
+      ],
+      "responses": [
+        "Tiene un evento llamado {{name}} a las {{start}} que termina a las {{end}}",
+        "Tiene una cita a las {{start}} que termina a las {{end}} llamado {{name}}",
+        "Tiene un evento que comezara a las {{start}}  horas y termina a las {{end}}, se llama {{name}}"
+      ],
+      "skill": "todayevents",
+      "context_set": "eventstoday"
+    },
+    {
+      "tag": "tomorrowevents",
+      "patterns": ["y manana?", "para manana?"],
+      "responses": [
+        "Manana tiene un evento llamado {{name}} a las {{start}} que termina a las {{end}}",
+        "Tiene una cita manana a las {{start}} que termina a las {{end}} llamado {{name}}",
+        "Tiene manana un evento que comezara a las {{start}}  horas y termina a las {{end}}, se llama {{name}}"
+      ],
+      "skill": "tomorrowevents",
+      "context_filter": "eventstoday"
+    },
+    {
+      "tag": "tomorroweventstomorrow",
+      "patterns": [
+        "que eventos tengo para manana?",
+        "para manana que tengo?",
+        "que debo hacer maniana?"
+      ],
+      "responses": [
+        "Manana tiene un evento llamado {{name}} a las {{start}} que termina a las {{end}}",
+        "Tiene una cita manana a las {{start}} que termina a las {{end}} llamado {{name}}",
+        "Tiene manana un evento que comezara a las {{start}}  horas y termina a las {{end}}, se llama {{name}}"
+      ],
+      "skill": "tomorrowevents"
+    }
+  ]
 }

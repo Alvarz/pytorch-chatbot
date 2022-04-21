@@ -37,9 +37,9 @@ class Chat:
 
     def simpleChat(self, sentence, user_id=123):
         X = self.processSentence(sentence)
-        response, action = self.searchForResponse(X, user_id)
+        response, skill = self.searchForResponse(X, user_id)
         if response:
-            return response, action
+            return response, skill
         else:
             return "I do not understand...", None
 
@@ -98,7 +98,7 @@ class Chat:
 
     def searchForResponse(self, X, user_id):
         answer = None
-        action = None
+        skill = None
         output = self.model(X)
         _, predicted = torch.max(output, dim=1)
 
@@ -110,9 +110,9 @@ class Chat:
             for i in self.intents:
                 if tag == i["tag"]:
 
-                    # check if has action and perform the action
-                    if 'action' in i:
-                        action = i['action']
+                    # check if has skill and perform the skill
+                    if 'skill' in i:
+                        skill = i['skill']
 
                     # check if this intent is contextual and applies to this user's conversation
                     if not 'context_filter' in i or \
@@ -131,7 +131,7 @@ class Chat:
                     if 'context_remove' in i:
                         self.removeContext(user_id, i['context_remove'])
         print(self.context)
-        return answer, action
+        return answer, skill
 
     ############
     #

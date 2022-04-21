@@ -13,7 +13,7 @@
         "you have an apointment at {{start}} it end at {{end}} and it is called {{name}}",
         "the event will start at {{start}}  hours and end at  {{end}}, is called {{name}}"
       ],
-      "action": "todayevents",
+      "skill": "todayevents",
       "context_filter": "today"
     },
     {
@@ -28,21 +28,18 @@
         "you have an apointment at {{start}} it end at {{end}} and it is called {{name}}",
         "the event will start at {{start}}  hours and end at  {{end}}, is called {{name}}"
       ],
-      "action": "todayevents",
+      "skill": "todayevents",
       "context_set": "eventstoday"
     },
     {
       "tag": "tomorrowevents",
-      "patterns": [
-        "and tomorrow?",
-        "tomorrow?"
-      ],
+      "patterns": ["and tomorrow?", "tomorrow?"],
       "responses": [
         "tomorrow you have an event called {{name}} at {{start}} and finish at {{end}}",
         "tomorrow you have an apointment at {{start}} it end at {{end}} and it is called {{name}}",
         "the event will start at {{start}}  hours tomorrow and end at  {{end}}, is called {{name}}"
       ],
-      "action": "tomorrowevents",
+      "skill": "tomorrowevents",
       "context_filter": "eventstoday"
     },
     {
@@ -57,7 +54,7 @@
         "tomorrow you have an apointment at {{start}} it end at {{end}} and it is called {{name}}",
         "the event will start at {{start}}  hours tomorrow and end at  {{end}}, is called {{name}}"
       ],
-      "action": "tomorrowevents"
+      "skill": "tomorrowevents"
     }
   ]
 }

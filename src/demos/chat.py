@@ -8,5 +8,5 @@ my_chat = Chat(lang, intentsPath='src/demos/intents/' + lang + '/')
 my_chat.setup()
 while True:
     question = input("")
-    answer, action = my_chat.simpleChat(question)
-    print(answer, action)
+    answer, skill = my_chat.simpleChat(question)
+    print(answer, skill)
